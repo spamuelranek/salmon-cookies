@@ -16,7 +16,7 @@ let seattle = {
     //   console.log(seattleSalesPH);
       let hourTotal = seattleSalesDay.push(seattleSalesPH);
     }
-    console.log(seattleSalesDay);
+    // console.log(seattleSalesDay);
     return seattleSalesDay;
   }
 
@@ -34,7 +34,7 @@ let tokyo = {
     //   console.log(tokyoSalesPH);
       let hourTotal = tokyoSalesDay.push(tokyoSalesPH);
     }
-    console.log(tokyoSalesDay);
+    // console.log(tokyoSalesDay);
     return tokyoSalesDay;
   }
 
@@ -70,7 +70,7 @@ let paris = {
     //   console.log(parisSalesPH);
       let hourTotal = parisSalesDay.push(parisSalesPH);
     }
-    console.log(parisSalesDay);
+    // console.log(parisSalesDay);
     return parisSalesDay;
   }
 
@@ -89,7 +89,7 @@ let lima = {
     //   console.log(limaSalesPH);
       let hourTotal = limaSalesDay.push(limaSalesPH);
     }
-    console.log(limaSalesDay);
+    // console.log(limaSalesDay);
     return limaSalesDay;
   }
 
@@ -116,6 +116,7 @@ function printSales(){
     console.log(targetClass);
 // creates title for each city
     let loCation = document.createElement('h3');
+    loCation.innerHTML =
     targetClass.appendChild(loCation);
     loCation.textContent = cityTitle[cities];
 // creates ul associated with each city
@@ -141,7 +142,6 @@ function printSales(){
 }
 
 
-
 printSales();
 
 
@@ -149,19 +149,5 @@ printSales();
 
 
 
-
-// function test() {
-//     let minCust = 23;
-//     let maxCust = 65;
-//     let avgCookieSale = 6.3;
-//     let seattleSalesDay = []
-//     for (hours = 0; hours<14; hours++){
-//         let seattleSalesPH = Math.floor((minCust + Math.floor(Math.random()* maxCust)) * avgCookieSale);
-//         console.log(seattleSalesPH);
-//         let hourTotal = seattleSalesDay.push(seattleSalesPH);
-//     }
-//     console.log(seattleSalesDay)
-
-// }
 
 
