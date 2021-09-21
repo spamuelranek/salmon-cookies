@@ -10,7 +10,21 @@ let parisLocation = ['Paris',20,38,2.3];
 let limaLocation = ['Lima',2,16,4.6];
 let globalLocation = [seattleLocation,tokyoLocation,dubaiLocation,parisLocation,limaLocation];
 
-
+let sixAm = 0;
+let sevenAm = 0;
+let eightAm = 0;
+let nineAm = 0;
+let tenAm = 0;
+let elevenAm = 0;
+let twelvePm = 0;
+let onePm = 0;
+let twoPm = 0;
+let threePm = 0;
+let fourPm = 0;
+let fivePm = 0;
+let sixPm = 0;
+let sevenPm = 0;
+let grandestTotal =0;
 
 function CityLocation (city, minCust, maxCust, avgCookieSale){
   this.city = city;
@@ -27,58 +41,31 @@ CityLocation.prototype.salesPerHour =function(){
     daySales = daySales + citySalesPH;
   }
   // console.log(daySales);
-  citySalesDay[time.length + 1] = daySales;
+  citySalesDay[time.length] = daySales;
   console.log(citySalesDay);
   return citySalesDay;
 };
 
 CityLocation.prototype.salesTable = function(){
+  let saleVar =this.salesPerHour();
   let salesFigures = document.getElementById('sales-figures');
   let tableRow = document.createElement('tr');
   salesFigures.appendChild(tableRow);
+  let tableCity = document.createElement('td');
+  tableCity.textContent = this.city;
+  tableRow.appendChild(tableCity);
   for (let hours = 0; hours <time.length; hours++){
     let tableCell= document.createElement('td');
-    tableCell.textContent =time[hours] + ' Total:' + this.salesPerHour()[hours];
+    tableCell.textContent =time[hours] + ' Total:' + saleVar[hours];
     tableRow.appendChild(tableCell);
   }
   let totalCell = document.createElement('td');
-  totalCell.textContent ='Daily Total:' + this.salesPerHour()[15];
+  totalCell.textContent ='Daily Total:' + saleVar[time.length];
   tableRow.appendChild(totalCell);
 };
 
-// function to create all of the sales page
-function printSales(){
-// for loop to iterate through all the cities+
-  for (let cities= 0; cities<salesGlobal.length; cities++){
-// targets the section tag with city id
-    let targetClass = document.getElementById('city');
-    console.log(targetClass);
-// creates title for each city
-    let loCation = document.createElement('h3');
-    loCation.innerHTML =
-    targetClass.appendChild(loCation);
-    loCation.textContent = cityTitle[cities];
-// creates ul associated with each city
-    let postSales = document.createElement('ul');
-    targetClass.appendChild(postSales);
-// creates li's for each hour of the sales day
-    for (let salesHours = 0; salesHours<salesGlobal[cities].length; salesHours++){
-      let hourlySales = document.createElement('li');
-      postSales.appendChild(hourlySales);
-      hourlySales.textContent = time[salesHours] + ' : ' + salesGlobal[cities][salesHours] + ' cookies';
-    }
-// creates another li to print the total
-    let hourlyTotal = document.createElement('li');
-    postSales.appendChild(hourlyTotal);
-// adds each element of the purchase totals of each day
-    let total = salesGlobal[cities][0];
-    for (let i =1; i<salesGlobal[cities].length; i++){
-      total = total + salesGlobal[cities][i];
-      console.log(total);
-    }
-    hourlyTotal.textContent = 'Total Cookies Sold: ' + total;
-  }
-}
+
+
 
 let seattleTotal = new CityLocation(globalLocation[0][0],globalLocation[0][1],globalLocation[0][2],globalLocation[0][3]);
 let tokyoTotal = new CityLocation(globalLocation[1][0],globalLocation[1][1],globalLocation[1][2],globalLocation[1][3]);
@@ -87,10 +74,10 @@ let parisTotal = new CityLocation(globalLocation[3][0],globalLocation[3][1],glob
 let limaTotal = new CityLocation(globalLocation[4][0],globalLocation[4][1],globalLocation[4][2],globalLocation[4][3]);
 
 console.log(seattleTotal.salesTable());
-// console.log(tokyoTotal.salesPerHour());
-// console.log(dubaiTotal.salesPerHour());
-// console.log(parisTotal.salesPerHour());
-// console.log(limaTotal.salesPerHour());
+console.log(tokyoTotal.salesTable());
+console.log(dubaiTotal.salesTable());
+console.log(parisTotal.salesTable());
+console.log(limaTotal.salesTable());
 
 // let seattle = {
 //   city: 'Seattle',
