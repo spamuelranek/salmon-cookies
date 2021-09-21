@@ -20,13 +20,65 @@ function CityLocation (city, minCust, maxCust, avgCookieSale){
 }
 CityLocation.prototype.salesPerHour =function(){
   let citySalesDay = [];
+  let daySales = 0;
   for (let hours = 0; hours<time.length; hours++){
     let citySalesPH = Math.floor((this.minCust+ Math.floor(Math.random() * ((this.maxCust - this.minCust) + 1)))* this.avgCookieSale);
-    // console.log('test');
     citySalesDay.push(citySalesPH);
+    daySales = daySales + citySalesPH;
   }
+  // console.log(daySales);
+  citySalesDay[time.length + 1] = daySales;
+  console.log(citySalesDay);
   return citySalesDay;
 };
+
+CityLocation.prototype.salesTable = function(){
+  let salesFigures = document.getElementById('sales-figures');
+  let tableRow = document.createElement('tr');
+  salesFigures.appendChild(tableRow);
+  for (let hours = 0; hours <time.length; hours++){
+    let tableCell= document.createElement('td');
+    tableCell.textContent =time[hours] + ' Total:' + this.salesPerHour()[hours];
+    tableRow.appendChild(tableCell);
+  }
+  let totalCell = document.createElement('td');
+  totalCell.textContent ='Daily Total:' + this.salesPerHour()[15];
+  tableRow.appendChild(totalCell);
+};
+
+// function to create all of the sales page
+function printSales(){
+// for loop to iterate through all the cities+
+  for (let cities= 0; cities<salesGlobal.length; cities++){
+// targets the section tag with city id
+    let targetClass = document.getElementById('city');
+    console.log(targetClass);
+// creates title for each city
+    let loCation = document.createElement('h3');
+    loCation.innerHTML =
+    targetClass.appendChild(loCation);
+    loCation.textContent = cityTitle[cities];
+// creates ul associated with each city
+    let postSales = document.createElement('ul');
+    targetClass.appendChild(postSales);
+// creates li's for each hour of the sales day
+    for (let salesHours = 0; salesHours<salesGlobal[cities].length; salesHours++){
+      let hourlySales = document.createElement('li');
+      postSales.appendChild(hourlySales);
+      hourlySales.textContent = time[salesHours] + ' : ' + salesGlobal[cities][salesHours] + ' cookies';
+    }
+// creates another li to print the total
+    let hourlyTotal = document.createElement('li');
+    postSales.appendChild(hourlyTotal);
+// adds each element of the purchase totals of each day
+    let total = salesGlobal[cities][0];
+    for (let i =1; i<salesGlobal[cities].length; i++){
+      total = total + salesGlobal[cities][i];
+      console.log(total);
+    }
+    hourlyTotal.textContent = 'Total Cookies Sold: ' + total;
+  }
+}
 
 let seattleTotal = new CityLocation(globalLocation[0][0],globalLocation[0][1],globalLocation[0][2],globalLocation[0][3]);
 let tokyoTotal = new CityLocation(globalLocation[1][0],globalLocation[1][1],globalLocation[1][2],globalLocation[1][3]);
@@ -34,11 +86,11 @@ let dubaiTotal = new CityLocation(globalLocation[2][0],globalLocation[2][1],glob
 let parisTotal = new CityLocation(globalLocation[3][0],globalLocation[3][1],globalLocation[3][2],globalLocation[3][3]);
 let limaTotal = new CityLocation(globalLocation[4][0],globalLocation[4][1],globalLocation[4][2],globalLocation[4][3]);
 
-console.log(seattleTotal.salesPerHour());
-console.log(tokyoTotal.salesPerHour());
-console.log(dubaiTotal.salesPerHour());
-console.log(parisTotal.salesPerHour());
-console.log(limaTotal.salesPerHour());
+console.log(seattleTotal.salesTable());
+// console.log(tokyoTotal.salesPerHour());
+// console.log(dubaiTotal.salesPerHour());
+// console.log(parisTotal.salesPerHour());
+// console.log(limaTotal.salesPerHour());
 
 // let seattle = {
 //   city: 'Seattle',
@@ -144,39 +196,7 @@ console.log(limaTotal.salesPerHour());
 
 
 
-// // function to create all of the sales page
-// function printSales(){
-// // for loop to iterate through all the cities
-//   for (let cities= 0; cities<salesGlobal.length; cities++){
-// // targets the section tag with city id
-//     let targetClass = document.getElementById('city');
-//     console.log(targetClass);
-// // creates title for each city
-//     let loCation = document.createElement('h3');
-//     loCation.innerHTML =
-//     targetClass.appendChild(loCation);
-//     loCation.textContent = cityTitle[cities];
-// // creates ul associated with each city
-//     let postSales = document.createElement('ul');
-//     targetClass.appendChild(postSales);
-// // creates li's for each hour of the sales day
-//     for (let salesHours = 0; salesHours<salesGlobal[cities].length; salesHours++){
-//       let hourlySales = document.createElement('li');
-//       postSales.appendChild(hourlySales);
-//       hourlySales.textContent = time[salesHours] + ' : ' + salesGlobal[cities][salesHours] + ' cookies';
-//     }
-// // creates another li to print the total
-//     let hourlyTotal = document.createElement('li');
-//     postSales.appendChild(hourlyTotal);
-// // adds each element of the purchase totals of each day
-//     let total = salesGlobal[cities][0];
-//     for (let i =1; i<salesGlobal[cities].length; i++){
-//       total = total + salesGlobal[cities][i];
-//       console.log(total);
-//     }
-//     hourlyTotal.textContent = 'Total Cookies Sold: ' + total;
-//   }
-// }
+
 
 
 // printSales();
