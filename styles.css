@@ -4,4 +4,9 @@ h3 {
     border-color:black;
     border-width: 5px;
     border-radius: 3px;
+    padding: 1.5 em 1.5em;
+}
+
+h1 {
+    border: 10px solid black;
 }
