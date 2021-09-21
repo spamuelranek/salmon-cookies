@@ -39,6 +39,7 @@ console.log(tokyoTotal.salesPerHour());
 console.log(dubaiTotal.salesPerHour());
 console.log(parisTotal.salesPerHour());
 console.log(limaTotal.salesPerHour());
+
 // let seattle = {
 //   city: 'Seattle',
 //   minCust: 23,
