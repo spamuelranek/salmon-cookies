@@ -33,6 +33,8 @@ function CityLocation (city, minCust, maxCust, avgCookieSale){
 	this.maxCust = maxCust;
 	this.avgCookieSale = avgCookieSale;
 }
+
+//creates sales data -- will be run by demand of salesTable
 CityLocation.prototype.salesPerHour =function(){
 	let citySalesDay = [];
 	let daySales = 0;
@@ -50,6 +52,7 @@ CityLocation.prototype.salesPerHour =function(){
 	return citySalesDay;
 };
 
+//creates table header -- only need to run for one city
 CityLocation.prototype.salesHeader = function(){
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
@@ -70,6 +73,7 @@ CityLocation.prototype.salesHeader = function(){
 	tableRow.appendChild(columnTotal);
 };
 
+// creates sales data table --
 CityLocation.prototype.salesTable = function(){
 	let saleVar =this.salesPerHour();
 	let salesFigures = document.getElementById('sales-figures');
@@ -90,6 +94,7 @@ CityLocation.prototype.salesTable = function(){
 	tableRow.appendChild(totalCell);
 };
 
+// creates footer for sales table -- only needs to be run for one city
 CityLocation.prototype.salesFooter = function(){
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
@@ -109,27 +114,26 @@ CityLocation.prototype.salesFooter = function(){
 	tableRow.appendChild(totalCell);
 };
 
+// creates new instantaces of CityLocation
 let seattleTotal = new CityLocation(globalLocation[0][0],globalLocation[0][1],globalLocation[0][2],globalLocation[0][3]);
 let tokyoTotal = new CityLocation(globalLocation[1][0],globalLocation[1][1],globalLocation[1][2],globalLocation[1][3]);
 let dubaiTotal = new CityLocation(globalLocation[2][0],globalLocation[2][1],globalLocation[2][2],globalLocation[2][3]);
 let parisTotal = new CityLocation(globalLocation[3][0],globalLocation[3][1],globalLocation[3][2],globalLocation[3][3]);
 let limaTotal = new CityLocation(globalLocation[4][0],globalLocation[4][1],globalLocation[4][2],globalLocation[4][3]);
 
+// generates sales Header
 seattleTotal.salesHeader();
 
+// generates data table
 seattleTotal.salesTable();
 tokyoTotal.salesTable();
 dubaiTotal.salesTable();
 parisTotal.salesTable();
 limaTotal.salesTable();
 
+// generates sales Footer
 seattleTotal.salesFooter();
-// tokyoTotal.salesFooter();
-// dubaiTotal.salesFooter();
-// parisTotal.salesFooter();
-// limaTotal.salesFooter();
 
-// console.log(times);
 
 
 
