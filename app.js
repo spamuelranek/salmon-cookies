@@ -41,15 +41,29 @@ CityLocation.prototype.salesPerHour =function(){
     times[hours] = times[hours] + citySalesPH;
     citySalesDay.push(citySalesPH);
     daySales = daySales + citySalesPH;
-
   }
-  // console.log(daySales);
   times[time.length]=times[time.length] + daySales;
   citySalesDay[time.length] = daySales;
   console.log(citySalesDay);
   return citySalesDay;
 };
 
+CityLocation.prototype.salesHeader = function(){
+  let salesFigures = document.getElementById('sales-figures');
+  let tableRow = document.createElement('tr');
+  salesFigures.appendChild(tableRow);
+  let tableCity = document.createElement('td');
+  tableCity.textContent ='';
+  tableRow.appendChild(tableCity);
+  for (let hours = 0; hours <time.length; hours++){
+    let tableCell= document.createElement('td');
+    tableCell.textContent =time[hours];
+    tableRow.appendChild(tableCell);
+  }
+  let columnTotal = document.createElement('td');
+  columnTotal.textContent = 'Daily Locatioin Totals';
+  tableRow.appendChild(columnTotal);
+};
 CityLocation.prototype.salesTable = function(){
   let saleVar =this.salesPerHour();
   let salesFigures = document.getElementById('sales-figures');
@@ -73,7 +87,7 @@ CityLocation.prototype.salesFooter = function(){
   let tableRow = document.createElement('tr');
   salesFigures.appendChild(tableRow);
   let totalRow = document.createElement('td');
-  totalRow.textcontent = 'Totals:';
+  totalRow.textContent = 'Global Totals:';
   tableRow.appendChild(totalRow);
   for (let hours = 0; hours <time.length; hours++){
     let tableCell= document.createElement('td');
@@ -94,11 +108,13 @@ let dubaiTotal = new CityLocation(globalLocation[2][0],globalLocation[2][1],glob
 let parisTotal = new CityLocation(globalLocation[3][0],globalLocation[3][1],globalLocation[3][2],globalLocation[3][3]);
 let limaTotal = new CityLocation(globalLocation[4][0],globalLocation[4][1],globalLocation[4][2],globalLocation[4][3]);
 
-console.log(seattleTotal.salesTable());
-console.log(tokyoTotal.salesTable());
-console.log(dubaiTotal.salesTable());
-console.log(parisTotal.salesTable());
-console.log(limaTotal.salesTable());
+seattleTotal.salesHeader();
+
+seattleTotal.salesTable();
+tokyoTotal.salesTable();
+dubaiTotal.salesTable();
+parisTotal.salesTable();
+limaTotal.salesTable();
 
 seattleTotal.salesFooter();
 // tokyoTotal.salesFooter();
