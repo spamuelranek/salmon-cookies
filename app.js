@@ -94,22 +94,29 @@ CityLocation.prototype.salesHeader = function(){
 	tableRow.appendChild(columnTotal);
 };
 
-// creates sales data table --
+// creates sales data table -- run for every city
 CityLocation.prototype.salesTable = function(){
+
+// brings data in from salesPerHour method for this instance
 	let saleVar =this.salesPerHour();
+
+// creates the table rows
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
 	salesFigures.appendChild(tableRow);
+
+// creates the first row data cell with the city name
 	let tableCity = document.createElement('td');
 	tableCity.textContent = this.city;
 	tableRow.appendChild(tableCity);
 
+// creates the data cells contaning hourly sales
 	for (let hours = 0; hours <hoursOperation.length; hours++){
 		let tableCell= document.createElement('td');
 		tableCell.textContent = saleVar[hours];
 		tableRow.appendChild(tableCell);
 	}
-
+// creates the data cells containing daily total for location
 	let totalCell = document.createElement('td');
 	totalCell.textContent =this.city + ' Total:' + saleVar[hoursOperation.length];
 	tableRow.appendChild(totalCell);
