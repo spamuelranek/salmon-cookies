@@ -26,22 +26,34 @@ function CityLocation (city, minCust, maxCust, avgCookieSale){
 	this.avgCookieSale = avgCookieSale;
 }
 
+// gives a random amount of customers in a hour within the max and min
+CityLocation.prototype.randomCustQuant = function(){
+	let randomCust = Math.floor((Math.random() *(this.maxCust-this.minCust) +1)+this.minCust);
+	return randomCust;
+};
+
 //creates sales data -- will be run by demand of salesTable
 CityLocation.prototype.salesPerHour =function(){
 	let citySalesDay = [];
 	let daySales = 0;
 
 	for (let hours = 0; hours<hoursOperation.length; hours++){
-		let citySalesPH = Math.floor((this.minCust+ Math.floor(Math.random() * ((this.maxCust - this.minCust) + 1)))* this.avgCookieSale);
+
+// let citySalesPH = Math.floor((this.minCust+ Math.floor(Math.random() * ((this.maxCust - this.minCust) + 1)))* this.avgCookieSale);
+		let citySalesPH = Math.floor(this.randomCustQuant() * this.avgCookieSale);
+
 // add the city sales of that hour to the global variable that sums to global hourly total
 		times[hours] = times[hours] + citySalesPH;
+
 // adds the next hour to the array to create an array of every cookie sold in each hour
 		citySalesDay.push(citySalesPH);
+
 // adds all the sales to a day total
 		daySales = daySales + citySalesPH;
 	}
 // adds day total to global variable that sums to global total
 	times[hoursOperation.length]=times[hoursOperation.length] + daySales;
+
 // this adds the day total to the end of the hourly sales array to make it easier to print
 	citySalesDay[hoursOperation.length] = daySales;
 	return citySalesDay;
@@ -56,23 +68,27 @@ CityLocation.prototype.salesPerHour =function(){
 
 
 
-//creates table header -- only need to run for one city
+// creates table header -- only need to run for one city
 CityLocation.prototype.salesHeader = function(){
 
+// creates table header row
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
 	salesFigures.appendChild(tableRow);
 
+// creates table head row 1st blank data cells
 	let tableCity = document.createElement('td');
 	tableCity.textContent ='';
 	tableRow.appendChild(tableCity);
 
+// creates a heading for each hour
 	for (let hours = 0; hours <hoursOperation.length; hours++){
 		let tableCell= document.createElement('td');
 		tableCell.textContent =hoursOperation[hours];
 		tableRow.appendChild(tableCell);
 	}
 
+// creates final cell in header defining totals column
 	let columnTotal = document.createElement('td');
 	columnTotal.textContent = 'Daily Locatioin Totals';
 	tableRow.appendChild(columnTotal);

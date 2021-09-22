@@ -23,7 +23,8 @@ aside {
 main {
     display: inline;
     background-color: #fcbf49 ;
-    max-height: 100%;
+    height: 100%;
+    width: 85%;
 
 }
 
