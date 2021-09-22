@@ -1,6 +1,6 @@
 'use strict';
 
-let time =['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
+let hoursOperation =['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
 
 let seattleLocation =['Seattle',23,65,6.3];
@@ -10,23 +10,15 @@ let parisLocation = ['Paris',20,38,2.3];
 let limaLocation = ['Lima',2,16,4.6];
 let globalLocation = [seattleLocation,tokyoLocation,dubaiLocation,parisLocation,limaLocation];
 
-let sixAm = 0;
-let sevenAm = 0;
-let eightAm = 0;
-let nineAm = 0;
-let tenAm = 0;
-let elevenAm = 0;
-let twelvePm = 0;
-let onePm = 0;
-let twoPm = 0;
-let threePm = 0;
-let fourPm = 0;
-let fivePm = 0;
-let sixPm = 0;
-let sevenPm = 0;
-let grandestTotal =0;
-let times =[sixAm,sevenAm,eightAm,nineAm,tenAm,elevenAm,twelvePm,onePm,twoPm,threePm,fourPm,fivePm,sixPm,sevenPm,grandestTotal];
+// sets up times to have the correct amount of zeros for the amount of hours there are. Adds additional value for total location
+let times =[];
+let timesLength = (hoursOperation.length) + 1;
+for (let i = 0; i < (timesLength); i ++){
+	times.push(0);
+}
 
+
+// constructor function that creates the city instance
 function CityLocation (city, minCust, maxCust, avgCookieSale){
 	this.city = city;
 	this.minCust = minCust;
@@ -39,32 +31,45 @@ CityLocation.prototype.salesPerHour =function(){
 	let citySalesDay = [];
 	let daySales = 0;
 
-	for (let hours = 0; hours<time.length; hours++){
+	for (let hours = 0; hours<hoursOperation.length; hours++){
 		let citySalesPH = Math.floor((this.minCust+ Math.floor(Math.random() * ((this.maxCust - this.minCust) + 1)))* this.avgCookieSale);
+// add the city sales of that hour to the global variable that sums to global hourly total
 		times[hours] = times[hours] + citySalesPH;
+// adds the next hour to the array to create an array of every cookie sold in each hour
 		citySalesDay.push(citySalesPH);
+// adds all the sales to a day total
 		daySales = daySales + citySalesPH;
 	}
-
-	times[time.length]=times[time.length] + daySales;
-	citySalesDay[time.length] = daySales;
-	console.log(citySalesDay);
+// adds day total to global variable that sums to global total
+	times[hoursOperation.length]=times[hoursOperation.length] + daySales;
+// this adds the day total to the end of the hourly sales array to make it easier to print
+	citySalesDay[hoursOperation.length] = daySales;
 	return citySalesDay;
 };
 
+// creates method to identify parent element, creat and append child element
+// CityLocation.prototype.byIdCreateappendChild = function (parentById,childElement){
+// 	let parentEl = document.getElementById(parentById);
+// 	let childEl = document.createElement(childElement);
+// 	parentEl.appendChild(childEl);
+// };
+
+
+
 //creates table header -- only need to run for one city
 CityLocation.prototype.salesHeader = function(){
+
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
-	let tableCity = document.createElement('td');
-
 	salesFigures.appendChild(tableRow);
+
+	let tableCity = document.createElement('td');
 	tableCity.textContent ='';
 	tableRow.appendChild(tableCity);
 
-	for (let hours = 0; hours <time.length; hours++){
+	for (let hours = 0; hours <hoursOperation.length; hours++){
 		let tableCell= document.createElement('td');
-		tableCell.textContent =time[hours];
+		tableCell.textContent =hoursOperation[hours];
 		tableRow.appendChild(tableCell);
 	}
 
@@ -83,14 +88,14 @@ CityLocation.prototype.salesTable = function(){
 	tableCity.textContent = this.city;
 	tableRow.appendChild(tableCity);
 
-	for (let hours = 0; hours <time.length; hours++){
+	for (let hours = 0; hours <hoursOperation.length; hours++){
 		let tableCell= document.createElement('td');
-		tableCell.textContent =time[hours] + ' Total:' + saleVar[hours];
+		tableCell.textContent = saleVar[hours];
 		tableRow.appendChild(tableCell);
 	}
 
 	let totalCell = document.createElement('td');
-	totalCell.textContent ='Daily Total:' + saleVar[time.length];
+	totalCell.textContent =this.city + ' Total:' + saleVar[hoursOperation.length];
 	tableRow.appendChild(totalCell);
 };
 
@@ -103,14 +108,14 @@ CityLocation.prototype.salesFooter = function(){
 	totalRow.textContent = 'Global Totals:';
 	tableRow.appendChild(totalRow);
 
-	for (let hours = 0; hours <time.length; hours++){
+	for (let hours = 0; hours <hoursOperation.length; hours++){
 		let tableCell= document.createElement('td');
-		tableCell.textContent ='Global ' + time[hours] + ' Total:' + times[hours];
+		tableCell.textContent = times[hours];
 		tableRow.appendChild(tableCell);
 	}
 
 	let totalCell = document.createElement('td');
-	totalCell.textContent ='Global Day Total:' + times[time.length];
+	totalCell.textContent ='Global Day Total:' + times[hoursOperation.length];
 	tableRow.appendChild(totalCell);
 };
 
