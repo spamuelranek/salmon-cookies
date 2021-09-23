@@ -3,13 +3,6 @@
 let hoursOperation =['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
 
-let seattleLocation =['Seattle',23,65,6.3];
-let tokyoLocation = ['Tokyo',3,24,1.2];
-let dubaiLocation = ['Dubai',11,38,3.7];
-let parisLocation = ['Paris',20,38,2.3];
-let limaLocation = ['Lima',2,16,4.6];
-let globalLocation = [seattleLocation,tokyoLocation,dubaiLocation,parisLocation,limaLocation];
-
 // sets up times to have the correct amount of zeros for the amount of hours there are. Adds additional value for total location
 let times =[];
 let timesLength = (hoursOperation.length) + 1;
@@ -69,7 +62,7 @@ CityLocation.prototype.salesPerHour =function(){
 
 
 // creates table header -- only need to run for one city
-CityLocation.prototype.salesHeader = function(){
+ function tableHeader(){
 
 // creates table header row
 	let salesFigures = document.getElementById('sales-figures');
@@ -92,7 +85,9 @@ CityLocation.prototype.salesHeader = function(){
 	let columnTotal = document.createElement('td');
 	columnTotal.textContent = 'Daily Locatioin Totals';
 	tableRow.appendChild(columnTotal);
-};
+}
+
+tableHeader();
 
 // creates sales data table -- run for every city
 CityLocation.prototype.salesTable = function(){
@@ -123,7 +118,7 @@ CityLocation.prototype.salesTable = function(){
 };
 
 // creates footer for sales table -- only needs to be run for one city
-CityLocation.prototype.salesFooter = function(){
+function tableFooter (){
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
 	salesFigures.appendChild(tableRow);
@@ -140,17 +135,20 @@ CityLocation.prototype.salesFooter = function(){
 	let totalCell = document.createElement('td');
 	totalCell.textContent ='Global Day Total:' + times[hoursOperation.length];
 	tableRow.appendChild(totalCell);
-};
+}
+
+
 
 // creates new instantaces of CityLocation
-let seattleTotal = new CityLocation(globalLocation[0][0],globalLocation[0][1],globalLocation[0][2],globalLocation[0][3]);
-let tokyoTotal = new CityLocation(globalLocation[1][0],globalLocation[1][1],globalLocation[1][2],globalLocation[1][3]);
-let dubaiTotal = new CityLocation(globalLocation[2][0],globalLocation[2][1],globalLocation[2][2],globalLocation[2][3]);
-let parisTotal = new CityLocation(globalLocation[3][0],globalLocation[3][1],globalLocation[3][2],globalLocation[3][3]);
-let limaTotal = new CityLocation(globalLocation[4][0],globalLocation[4][1],globalLocation[4][2],globalLocation[4][3]);
+let seattleTotal = new CityLocation('Seattle',23,65,6.3);
+let tokyoTotal = new CityLocation('Tokyo',3,24,1.2);
+let dubaiTotal = new CityLocation('Dubai',11,38,3.7);
+let parisTotal = new CityLocation('Paris',20,38,2.3);
+let limaTotal = new CityLocation('Lima',2,16,4.6);
+let newCity = new CityLocation('carnation',1,88,6);
 
 // generates sales Header
-seattleTotal.salesHeader();
+tableHeader();
 
 // generates data table
 seattleTotal.salesTable();
@@ -158,11 +156,29 @@ tokyoTotal.salesTable();
 dubaiTotal.salesTable();
 parisTotal.salesTable();
 limaTotal.salesTable();
+newCity.salesTable();
 
 // generates sales Footer
-seattleTotal.salesFooter();
+tableFooter();
 
+// targets the form feild to get values
+let newStandForm = document.getElementById('new-stand');
 
+// function to creat new instance of CityLocation
+function createNewCity(event){
+	event.preventDefault();
+	console.log('yeah');
+	// let cityName = event.traget.name.vlaue;
+	// let minCustomer = event.target.minCust.value;
+	// let maxCustomer = event.target.maxCust.value;
+	// let averageCustomer = event.target.AvgCust;
+
+	// let newCityTotal = new CityLocation(cityName,minCustomer,maxCustomer,averageCustomer);
+	// newCityTotal.salesTable();
+}
+
+// adds event listener to the form pages submit button
+newStandForm.addEventListener('submit',createNewCity);
 
 
 
