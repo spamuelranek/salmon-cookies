@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>Salmon Cookies</title>
-        <!-- <link rel="stylesheet" href ="reset.css" type ="text/css"> -->
-        <link rel="stylesheet" href ="styles.css" type ="text/css">
+        <link rel="stylesheet" href ="css/reset.css">
+        <link rel="stylesheet" href ="css/styles.css" type ="text/css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Carattere&display=swap" rel="stylesheet">
@@ -12,24 +12,87 @@
     <body>
         <header>
             <h1> SALMON COOKIES</h1>
-            <img src ="salmonLogo.png" alt ="king salmon">
+            <img src ="images/salmonLogo.png" alt ="king salmon">
             <h2>The <em>"Fishy"</em> Snack</h2>
         </header>
 
         <aside>
             <nav>
                 <ul>
-                    <li>Loactions</li>
-                    <li>Hours</li>
+                    <li>
+                        <ul id = location>
+                            <li>Locations:</li>
+                            <li>Seattle</li>
+                            <li><a>123 King St</a></li>
+                            <li>Tokyo</li>
+                            <li><a>444 Silver St</a></li>
+                            <li>Dubai</li>
+                            <li><a>888014 Pink Blvd </a></li>
+                            <li>Paris</li>
+                            <li><a>10 Chum St</a></li>
+                            <li>Lima</li>
+                            <li><a>855584 Kokanee St</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class ="hours">Hours:</li>
+                            <li class ="hours">6am-8pm</li>
+                        </ul>
+                    </li>
                     <li>About Us</li>
-                    <li>Contact Us</li>
+                    <li>
+                        <ul>
+                            <li>Contant Us:</li>
+                            <li><a>@TheFishyCookie.com</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </aside>
 
+
         <main>
-            <h3>Test</h3>
-            <a href = "sales.html">Sales</a>
+            
+            <h3>Welcome to the home of "Sokey"! </h3>
+
+            <section>
+                <img src ="images/cutter.jpeg">
+                <p>
+                    Purchase the Cookie Molds
+                </p>
+            </section>
+            <section>
+                <img src ="images/family.jpeg">
+                <p>
+                    Purchase a Happy Family
+                </p>
+            </section>
+            <section>
+                <img src ="images/frosted-cookie.jpeg">
+                <p>
+                    Purchase the Cookies
+                </p>
+            </section>
+            <section>
+                <img class="sokey" src ="images/chinook.jpeg">
+                <img class="sokey"src ="images/chinook.jpeg">
+                <p>
+                    Purchase the a stuffed "Sokey"
+                </p>
+            </section>
+            <section>
+                <img src ="images/shirt.jpeg">
+                <p>
+                    Purchase the Salmon Cookie Swag
+                </p>
+            </section>
+
+            <a href = "html/sales.html">Sales</a>
         </main>
+
+
+
+
     </body>
 </html>
