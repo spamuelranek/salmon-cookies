@@ -175,28 +175,7 @@ function createNewCity(event){
 
 	let newCityTotal = new CityLocation(cityName,minCustomer,maxCustomer,averageCustomer);
 
-
-
-	let removeRow = document.getElementById('remove');
-	let salesFigures = document.getElementById('sales-figures');
-	salesFigures.removeChild(removeRow);
-	let tableRow = document.createElement('tr');
-	salesFigures.appendChild(tableRow);
-	let tableCity = document.createElement('td');
-	tableCity.textContent = newCityTotal.city;
-	tableRow.appendChild(tableCity);
-
-	let saleVar = newCityTotal.salesPerHour();
-
-
-	for (let hours = 0; hours <hoursOperation.length; hours++){
-		let tableCell= document.createElement('td');
-		tableCell.textContent = saleVar[hours];
-		tableRow.appendChild(tableCell);
-
-	}
-	// newCityTotal.salesTable();
-
+	newCityTotal.salesTable();
 
 	tableFooter();
 }

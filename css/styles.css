@@ -47,8 +47,9 @@ li{
     width: 130px;
 }
 
-#location li{
-    margin: 5px;
+.address {
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 #city{
@@ -62,9 +63,17 @@ li{
 
 }
 
+#aboutUs h2{
+    font-size: 2.1em;
+}
+
+#aboutUs p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 
-#home{
+.home{
     font-size: 2.1em;
 }
 
