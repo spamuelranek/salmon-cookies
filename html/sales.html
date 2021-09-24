@@ -15,12 +15,12 @@
                 <h3 id = questionTitle> Interested in opening your own "Salmon Cookie" stand?</h3>
                 <h4>Fill out this form to see how you match up against the world:</h4>
 
-                <form>
-                    <fieldset id = "new-stand">
+                <form id = "new-stand">
+                    <fieldset >
 
                         <div class = question>
                             <label>What City would you like to open in?</label>            
-                            <input type="text" name="city" required>
+                            <input type="text" name="minCust2" required>
                         </div >
 
                         <div class = question>
@@ -34,9 +34,9 @@
                         </div>
 
                         <div class = question>
-                            <label>On average, how many cookies each customer will buy?</label>
-                            <input type="number" name="AvgCust" required>
-                        </div> 
+                            <label>What is the highest number of customer you expect in a hour? </label>
+                            <input type="number" name="maxCust2" step =".1">
+                        </div>
 
                         <button type="submit">Submit</button required>   
                     </fieldset>

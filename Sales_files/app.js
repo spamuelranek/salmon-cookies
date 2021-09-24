@@ -51,7 +51,6 @@ CityLocation.prototype.salesPerHour =function(){
 
 // this adds the day total to the end of the hourly sales array to make it easier to print
 	this.citySalesDay[hoursOperation.length] = this.daySales;
-	console.log(this.citySalesDay + this.city);
 	return this.citySalesDay;
 };
 
@@ -122,7 +121,7 @@ CityLocation.prototype.salesTable = function(){
 function tableFooter (){
 	let salesFigures = document.getElementById('sales-figures');
 	let tableRow = document.createElement('tr');
-	tableRow.setAttribute('id','remove');
+	tableRow.setAttribute('id = "remove"');
 	salesFigures.appendChild(tableRow);
 	let totalRow = document.createElement('td');
 	totalRow.textContent = 'Global Totals:';
@@ -163,7 +162,6 @@ newCity.salesTable();
 // targets the form feild to get values
 let newStandForm = document.getElementById('new-stand');
 
-
 // function to creat new instance of CityLocation
 function createNewCity(event){
 	event.preventDefault();
@@ -174,28 +172,16 @@ function createNewCity(event){
 	let averageCustomer = event.target.maxCust2.value;
 
 	let newCityTotal = new CityLocation(cityName,minCustomer,maxCustomer,averageCustomer);
-
-
-
-	let removeRow = document.getElementById('remove');
+	console.log(newCityTotal.randomCustQuant());
+	console.log(newCityTotal.salesPerHour());
+	
+	
+	let removeRow = document.getElementById("remove");
 	let salesFigures = document.getElementById('sales-figures');
 	salesFigures.removeChild(removeRow);
-	let tableRow = document.createElement('tr');
-	salesFigures.appendChild(tableRow);
-	let tableCity = document.createElement('td');
-	tableCity.textContent = newCityTotal.city;
-	tableRow.appendChild(tableCity);
-
-	let saleVar = newCityTotal.salesPerHour();
 
 
-	for (let hours = 0; hours <hoursOperation.length; hours++){
-		let tableCell= document.createElement('td');
-		tableCell.textContent = saleVar[hours];
-		tableRow.appendChild(tableCell);
-
-	}
-	// newCityTotal.salesTable();
+	newCityTotal.salesTable();
 
 
 	tableFooter();
