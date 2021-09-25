@@ -175,6 +175,10 @@ function createNewCity(event){
 
 	let newCityTotal = new CityLocation(cityName,minCustomer,maxCustomer,averageCustomer);
 
+	let salesFigures = document.getElementById('sales-figures');
+	let removeFooter = document.getElementById('remove');
+	salesFigures.removeChild(removeFooter);
+
 	newCityTotal.salesTable();
 
 	tableFooter();
